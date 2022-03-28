@@ -1,2 +1,2 @@
 # Daily-Codes
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+This is my repo where my all daily codes on various platforms will be there.
