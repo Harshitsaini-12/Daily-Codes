@@ -31,47 +31,46 @@ class GFG {
 class Solve {
     int[] findTwoElement(int arr[], int n) {
         // code here
-        int[]ans=new int[2];
+        int []ans=new int[2];
         int xor=0;
-   for(int val:arr){
-     xor^=val;
-   }
-
-   for(int i=1;i<=arr.length;i++){
-     xor^=i;
-   }
-
-   int seta=0;
-   int setb=0;
-   int rsb=xor&(-xor);
-
-   for(int val:arr){
-     if((val&(rsb))==0){
-       seta^=val;
-     }else{
-       setb^=val;
-     }
-   }
-
-   for(int i=1;i<=arr.length;i++){
-    if((i&(rsb))==0){
-       seta^=i;
-     }else{
-       setb^=i;
-     }
-   }
-
-   for(int val:arr){
-     if(seta==val){
-        ans[0]=seta;
-        ans[1]=setb;
-        break;
-     }else if(val==setb){
-       ans[0]=setb;
-        ans[1]=seta;
-        break;
-     }
-   }
-return ans;
+        for(int val:arr){
+            xor^=val;
+        }
+        
+        for(int i=1;i<=n;i++)xor^=i;
+        
+        int rsb=xor&(-xor);
+        int a=0;
+        int b=0;
+        
+        for(int val:arr){
+            if((val&rsb)==0){
+                a^=val;
+            }else{
+                b^=val;
+            }
+        }
+        
+        for(int i=1;i<=n;i++){
+            if((i&rsb)==0){
+                a^=i;
+            }else{
+                b^=i;
+            }
+        }
+        
+        for(int val:arr){
+            if(val==a){
+                ans[0]=a;
+                ans[1]=b;
+                break;
+            }else if(val==b){
+                ans[0]=b;
+                ans[1]=a;
+                break;
+            }
+        }
+        
+        return ans;
     }
 }
