@@ -31,7 +31,7 @@ class GFG
 class Solution{
     int longestCommonSubstr(String s1, String s2, int n, int m){
         // code here
-        	int [][]dp=new int[s1.length()+1][s2.length()+1];
+        int [][]dp=new int[s1.length()+1][s2.length()+1];
 		int max=0;
 
 		for(int i=1;i<dp.length;i++){
