@@ -1,8 +1,8 @@
 class Solution {
     public List<String> letterCombinations(String digits) {
-        List<String> list = new ArrayList<>();
+
         if(digits.length()==0){
-            return list;
+            return new ArrayList<>();
         }
         
         List<String>ans=new ArrayList<>();
@@ -29,12 +29,10 @@ class Solution {
             ans.add(psf);
             return 1;
         }
-        
-        
+    
         int count=0;
         int val=digits.charAt(idx)-'0';
         String code=codes[val];
-        
         
         for(int i=0;i<code.length();i++){
             count+=getKPC(digits,idx+1,ans,psf+code.charAt(i));
