@@ -46,9 +46,9 @@ class Solution{
 						//i to k left half & k+1 to j right half
 						//left value=i*k+1 & right value=k+1*j+1
 
-						int lc=dp[i][k];
-						int rc=dp[k+1][j];
-						int mc=arr[i]*arr[k+1]*arr[j+1];
+					    int lc=dp[i][k];
+					    int rc=dp[k+1][j];
+					    int mc=arr[i]*arr[k+1]*arr[j+1];
 
 						int tc=lc+rc+mc;
 
