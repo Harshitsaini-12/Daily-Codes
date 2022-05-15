@@ -11,29 +11,29 @@
  */
 class Solution {
 public:
+    int deepestLevel=1;
     int sum=0;
-    int deepestlevel=1;
     
-    void ans(TreeNode*root,int level){
-        if(!root)return;
+    void deepestLeavesSum_(TreeNode*root,int level){
+        if(root==NULL)return;
         
-        if(level==deepestlevel){
+        if(level==deepestLevel){
             sum+=root->val;
         }
         
-        if(level>deepestlevel){
-            deepestlevel=level;
+        if(level>deepestLevel){
+            deepestLevel=level;
             sum=root->val;
         }
         
-        ans(root->left,level+1);
-        ans(root->right,level+1);
-        
+        deepestLeavesSum_(root->left,level+1);
+        deepestLeavesSum_(root->right,level+1);
     }
     
     int deepestLeavesSum(TreeNode* root) {
-        if(!root)return 0;
-        ans(root,1);
+        if(root==NULL)return 0;
+        
+       deepestLeavesSum_(root,1);
         return sum;
     }
 };
