@@ -13,6 +13,7 @@ public:
     
     TreeNode* search(TreeNode* clone,int val){
         if(clone==NULL)return NULL;
+        
         TreeNode* left=search(clone->left,val);
         TreeNode* right=search(clone->right,val);
         
