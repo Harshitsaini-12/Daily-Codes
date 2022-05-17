@@ -3,10 +3,8 @@ class Solution {
         Stack<String>st=new Stack<>();
         StringBuilder sb=new StringBuilder();
         
-        for(String a:s.trim().split(" ")){
-            if(!a.isEmpty()){
-                  st.push(a);
-            }
+        for(String ss:s.trim().split(" ")){
+            if(!ss.isEmpty())st.push(ss);
         }
         
         while(st.size()>0){
@@ -15,5 +13,6 @@ class Solution {
         }
         
         return sb.toString().trim();
+        
     }
 }
