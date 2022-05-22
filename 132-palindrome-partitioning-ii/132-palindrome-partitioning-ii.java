@@ -1,44 +1,41 @@
 class Solution {
     public int minCut(String s) {
-        return minCuts(s,0,s.length()-1,new HashMap<>());
-    }
-    
-    public int minCuts(String s,int start,int end,HashMap<String,Integer>hm){
+        int n=s.length();
         
-        if(isPalindrome(s,start,end))return 0;
+        boolean[][]pdp=new boolean[n+1][n+1];
         
-        int ans=1000000;
-        
-        String key=start+"#"+end;
-        
-        if(hm.containsKey(key)){
-            return hm.get(key);
-        }
-        
-        if(start>end)return 0;
-        
-        for(int i=start;i<end;i++){
-            if(isPalindrome(s,start,i)){
-               int rightans=minCuts(s,i+1,end,hm);
-            
-               int tempans=rightans+1;
-               ans=Math.min(ans,tempans);
+        for(int gap=0;gap<n;gap++){
+            for(int j=gap,i=0;j<n;i++,j++){
+                if(gap==0){
+                    pdp[i][j]=true;
+                }else if(s.charAt(i)==s.charAt(j) && gap==1){
+                    pdp[i][j]=true;
+                }else{
+                    pdp[i][j]=s.charAt(i)==s.charAt(j)&& pdp[i+1][j-1];
+                }
             }
-         
         }
         
-        hm.put(key,ans);
-        return ans;
+        int[]dp=new int[n+1];
+        Arrays.fill(dp,-1);
+        
+        return cut(s,0,n-1,dp,pdp);
     }
     
-    
-    public boolean isPalindrome(String s,int i,int j){
-        while(i<=j){
-            if(s.charAt(i)!=s.charAt(j))return false;
-            
-            i++;
-            j--;
+    public int cut(String s,int si,int ei,int[]dp,boolean[][]pdp){
+        
+        if(pdp[si][ei])return 0;
+        
+        if(dp[si]!=-1)return dp[si];
+        
+        int minAns=(int)1e8;
+        
+        for(int cut=si;cut<=ei;cut++){
+            if(pdp[si][cut]){
+                minAns=Math.min(minAns,cut(s,cut+1,ei,dp,pdp)+1);
+            }
         }
-        return true;
+        
+        return dp[si]=minAns;
     }
 }
