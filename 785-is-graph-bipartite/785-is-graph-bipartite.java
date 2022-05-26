@@ -1,30 +1,42 @@
 class Solution {
-    public boolean isBipartite(int[][] graph) {
+    
+    public boolean isBipartite(int[][]graph,int src,int[]vis){
+        LinkedList<Integer>q=new LinkedList<>();
+        q.addLast(src);
         
-        int[]colors=new int[graph.length];
-        Arrays.fill(colors,-1);
-        
-        for(int i=0;i<graph.length;i++){
-           
-            if(colors[i]!=-1)continue;
-            
-            if(hasEvenLenCycle(graph,i,colors,0)==false)return false;
+        int color=0;
+        while(q.size()>0){
+            int size=q.size();
+            while(size-->0){
+                int val=q.removeFirst();
+                
+                if(vis[val]!=-1){
+                    if(vis[val]!=color)return false;
+                    continue;
+                }
+                
+                vis[val]=color;
+                for(int v:graph[val]){
+                    if(vis[v]==-1){
+                        q.addLast(v);
+                    }
+                }
+            }
+            color=(color+1)%2;
         }
         return true;
     }
     
-    
-    private boolean hasEvenLenCycle(int[][] graph,int currV,int[]colors,int color){
+    public boolean isBipartite(int[][] graph) {
+        int n=graph.length;
         
-        if(colors[currV]!=-1)return colors[currV]==color;
+        int[]vis=new int[n];
+        Arrays.fill(vis,-1);
         
-        colors[currV]=color;
-        
-        for(int neig:graph[currV]){
-            if(hasEvenLenCycle(graph,neig,colors,1-color)==false){
-                return false;
-            }
+        for(int i=0;i<n;i++){
+            if(vis[i]==-1 && !isBipartite(graph,i,vis))return false;
         }
         return true;
     }
 }
+
