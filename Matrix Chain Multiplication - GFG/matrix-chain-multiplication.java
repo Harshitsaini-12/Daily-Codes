@@ -28,39 +28,45 @@ class GFG
 //User function Template for Java
 
 class Solution{
+    
+    static int mcm_dp(int arr[],int SI,int EI,int[][]dp,int N){
+        String sdp[][]=new String[N][N];
+        
+       for(int gap=1;gap<N;gap++){
+           for(int si=0,ei=gap;ei<N;si++,ei++){
+               if(ei-si==1){
+                   dp[si][ei]=0;
+                   sdp[si][ei]=(char)(si+'A')+"";
+                   continue;
+               }
+               
+               int minRes=(int)(1e9);
+               String minStr="";
+               
+               for(int cut=si+1;cut<ei;cut++){
+                   int leftRes=dp[si][cut];
+                   int rightRes=dp[cut][ei];
+                   
+                   if(leftRes+rightRes+arr[si]*arr[cut]*arr[ei]<minRes){
+                       minRes=leftRes+rightRes+arr[si]*arr[cut]*arr[ei];
+                       minStr="(" + sdp[si][cut] + sdp[cut][ei] + ")";
+                   }
+               }
+               
+               dp[si][ei]=minRes;
+               sdp[si][ei]=minStr;
+           }
+       }
+        
+        //  System.out.println(sdp[SI][EI]);
+        return dp[SI][EI];
+        
+    }
+    
     static int matrixMultiplication(int N, int arr[])
     {
         // code here
-        int[][]dp=new int[arr.length-1][arr.length-1];
-
-		for(int gap=0;gap<dp.length;gap++){
-			for(int i=0,j=gap;j<dp.length;j++,i++){
-				if(gap==0){
-					dp[i][j]=0;
-				}else if(gap==1){
-					dp[i][j]=arr[i]*arr[j]*arr[j+1];
-				}else{
-					int min=Integer.MAX_VALUE;
-
-					for(int k=i;k<j;k++){
-						//i to k left half & k+1 to j right half
-						//left value=i*k+1 & right value=k+1*j+1
-
-					    int lc=dp[i][k];
-					    int rc=dp[k+1][j];
-					    int mc=arr[i]*arr[k+1]*arr[j+1];
-
-						int tc=lc+rc+mc;
-
-						min=Math.min(min,tc);
-					}
-					
-					dp[i][j]=min;
-				}
-			}
-		}
-
-
-		return dp[0][dp.length-1];
+        int[][]dp=new int[N][N];
+        return mcm_dp(arr,0,N-1,dp,N);
     }
 }
