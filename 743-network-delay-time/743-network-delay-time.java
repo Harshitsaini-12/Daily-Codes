@@ -1,41 +1,58 @@
 class Solution {
-    public int networkDelayTime(int[][] times, int n, int K) {
-        int[][] graph = new int[n][n];
-        for(int i = 0; i < n ; i++) Arrays.fill(graph[i], Integer.MAX_VALUE);
-        for( int[] rows : times) graph[rows[0] - 1][rows[1] - 1] =  rows[2];        
+    
+    public int dijkstra(ArrayList<int[]>[]graph,int n,int src){
+        int[]dis=new int[n+1];
+        boolean[]vis=new boolean[n+1];
+        Arrays.fill(dis,(int)1e8);
         
-        int[] distance = new int[n];
-        Arrays.fill(distance, Integer.MAX_VALUE);
-        distance[K - 1] = 0;
+        //{vtx,wsf}
+        PriorityQueue<int[]>pq=new PriorityQueue<>((a,b)->{
+           return a[1]-b[1]; 
+        });
         
-        boolean[] visited = new boolean[n];
-        for(int i = 0; i < n ; i++){
-            int v = minIndex(distance, visited);
-            if(v == -1)continue;
-            visited[v] = true;
-            for(int j = 0; j < n; j++){
-                if(graph[v][j] != Integer.MAX_VALUE){
-                    int newDist = graph[v][j] + distance[v];
-                    if(newDist < distance[j]) distance[j] = newDist;
+        pq.add(new int[]{src,0});
+        
+        while(pq.size()!=0){
+            int[]p=pq.remove();
+            
+            int vtx=p[0];
+            int wsf=p[1];
+            
+            if(vis[vtx])continue;
+            
+            vis[vtx]=true;
+            dis[vtx]=wsf;
+            
+            for(int[]e:graph[vtx]){
+                int v=e[0];
+                int w=e[1];
+                
+                if(!vis[v]){
+                    pq.add(new int[]{v,wsf+w});
                 }
             }
         }
-        int result = 0;
-        for(int dist : distance){
-            if(dist == Integer.MAX_VALUE) return -1;
-            result = Math.max(result, dist);
+        
+        int maxTime=0;
+        
+        for(int i=1;i<=n;i++){
+            if(dis[i]==(int)1e8)return -1;
+            maxTime=Math.max(maxTime,dis[i]);
         }
-        return result;
+        
+        return maxTime;
     }
-	
-    private int minIndex(int[] distance, boolean[] visited){
-        int min = Integer.MAX_VALUE, minIndex = -1;
-        for(int i = 0; i < distance.length; i++){
-            if(!visited[i] && distance[i] < min){
-                min = distance[i];
-                minIndex = i;
-            }
+    
+    public int networkDelayTime(int[][] times, int n, int k) {
+        //vtx,wt
+        ArrayList<int[]>[]graph=new ArrayList[n+1];
+        
+        for(int i=0;i<=n;i++)graph[i]=new ArrayList<>();
+        
+        for(int[]time:times){
+            graph[time[0]].add(new int[]{time[1],time[2]});
         }
-        return minIndex;
+        
+        return dijkstra(graph,n,k);
     }
 }
