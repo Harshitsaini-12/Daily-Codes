@@ -21,8 +21,8 @@ class Solution{
                         swap(arr1[i],arr1[j]);
                     }else if(j>=n && i<n && arr1[i]>arr2[j-n]){
                         swap(arr1[i],arr2[j-n]);
-                    }else if(j >= n && i >= n && arr2[i - n] > arr2[j - n]){
-                        swap(arr2[i - n], arr2[j - n]);
+                    }else if(j>=n && i>=n && arr2[i-n]>arr2[j-n]){
+                        swap(arr2[i-n],arr2[j-n]);
                     }
                     
                     i++;
