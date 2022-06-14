@@ -24,10 +24,13 @@ class Solution {
         int m=word2.length();
         
         int[][] dp=new int[n+1][m+1];
+        
         for(int[]d:dp)Arrays.fill(d,-1);
         int ans=lcs(word1,word2,n,m,dp);
         
-        return n+m-2*ans;
+        return n + m - 2 * ans;
     }
 }
+
+// we find the lcs of two strings and then minus the extra charcters that we have to delte this will give us count of deleted characters.
 
