@@ -2,40 +2,38 @@ class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         sort(nums.begin(),nums.end());
-        vector<vector<int>>res;
+        vector<vector<int>>ans;
         
         for(int i=0;i<nums.size();i++){
             
-            if(i>0 && nums[i]==nums[i-1]){
-                continue;
-            }
+            if(i>0 && nums[i]==nums[i-1])continue;
             
-            int lo=i+1;
-            int hi=nums.size()-1;
             int tar=-nums[i];
+            int start=i+1;
+            int end=nums.size()-1;
             
-            while(lo<hi){
-                if(nums[lo]+nums[hi]==tar){
-                    vector<int>ans;
-                    ans.push_back(nums[i]);
-                    ans.push_back(nums[lo]);
-                    ans.push_back(nums[hi]);
+            while(start<end){
+                if(nums[start]+nums[end]==tar){
+                    vector<int>sans;
+                    sans.push_back(nums[i]);
+                    sans.push_back(nums[start]);
+                    sans.push_back(nums[end]);
                     
-                    res.push_back(ans);
+                    ans.push_back(sans);
                     
-                    while(lo<hi && nums[lo]==nums[lo+1])lo++;
-                    while(lo<hi && nums[hi]==nums[hi-1])hi--;
+                    while(start<end && nums[start]==nums[start+1])start++;
+                    while(start<end && nums[end]==nums[end-1])end--;
                     
-                    lo++;
-                    hi--;
-                }else if(nums[lo]+nums[hi]>tar){
-                    hi--;
+                    start++;
+                    end--;
+                }else if(nums[start]+nums[end]>tar){
+                    end--;
                 }else{
-                    lo++;
+                    start++;
                 }
             }
         }
         
-        return res;
+        return ans;
     }
 };
