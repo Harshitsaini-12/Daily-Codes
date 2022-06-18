@@ -146,11 +146,11 @@ class GfG
     Node flatten(Node root)
     {
 	// Your code here
-	if(root==null || root.next==null)return root;
+	if(root==null || root.next==null )return root;
 	
 	root.next=flatten(root.next);
 	
-	root=mergeSort(root.next,root);
+	root=mergeSort(root,root.next);
 	
 	return root;
 	
