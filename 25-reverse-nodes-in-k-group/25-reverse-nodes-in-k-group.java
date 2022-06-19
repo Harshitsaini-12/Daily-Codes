@@ -7,11 +7,13 @@
  *     ListNode(int val) { this.val = val; }
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
- */ 
+ */
 class Solution {
     ListNode th=null;
     ListNode tt=null;
+    
     private void addFirst(ListNode node){
+        
         if(th==null)th=tt=node;
         else{
             node.next=th;
@@ -19,24 +21,25 @@ class Solution {
         }
     }
     
-    public int length(ListNode node){
-        int count=0;
-        
+    private int len(ListNode node){
+        int len=0;
         while(node!=null){
-            count++;
+            len++;
             node=node.next;
         }
-        return count;
+        return len;
     }
     
     public ListNode reverseKGroup(ListNode head, int k) {
         if(head==null || head.next==null || k==1)return head;
         
-        int len=length(head);
-        ListNode oh=null,ot=null,curr=head;
+        ListNode curr=head;
+        int len=len(head);
+        ListNode oh=null;
+        ListNode ot=null;
         
         while(len>=k){
-           int tempk=k;
+            int tempk=k;
             
             while(curr!=null && tempk-->0){
                 ListNode forw=curr.next;
@@ -58,7 +61,6 @@ class Solution {
         }
         
         ot.next=curr;
-
         return oh;
     }
 }
