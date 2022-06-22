@@ -2,12 +2,12 @@ class Solution {
     
 public void findcombinations(int idx,int[] arr, int target,List<List<Integer>>ans,List<Integer>ds){
     
-     if(idx==arr.length){
-         if(target==0){
-             ans.add(new ArrayList<>(ds));
-         }
-            return;
-     }
+   if(idx==arr.length){
+       if(target==0){
+           ans.add(new ArrayList<>(ds));
+       }
+       return;
+   }
     
     if(arr[idx]<=target){
         ds.add(arr[idx]);
