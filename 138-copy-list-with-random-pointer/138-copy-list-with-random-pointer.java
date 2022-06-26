@@ -18,8 +18,8 @@ class Solution {
         Node curr=head;
         
         while(curr!=null){
-            
             Node forw=curr.next;
+            
             Node newnode=new Node(curr.val);
             
             curr.next=newnode;
@@ -30,7 +30,7 @@ class Solution {
     }
     
     public void copyRandomPointer(Node head){
-        Node curr=head;
+       Node curr=head;
         
         while(curr!=null){
             
@@ -57,6 +57,7 @@ class Solution {
             
             prev=prev.next;
             curr=curr.next;
+            
         }
         
         return dummy.next;
