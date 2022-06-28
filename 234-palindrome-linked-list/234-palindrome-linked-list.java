@@ -44,13 +44,13 @@ class Solution {
         if(head==null || head.next==null)return true;
         
         ListNode mid=getmid(head);
-        
         ListNode newnode=mid.next;
         
         newnode=reverse(newnode);
         
         ListNode c1=head;
         ListNode c2=newnode;
+        
         boolean res=true;
         
         while(c2!=null){
