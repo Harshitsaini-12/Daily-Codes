@@ -42,8 +42,8 @@ class GfG
         presum+=val;
         
         if(hm.containsKey(presum)){
-            int x=i-hm.get(presum);
-            len=Math.max(len,x);
+           int x=i-hm.get(presum);
+           len=Math.max(len,x);
         }else{
             hm.put(presum,i);
         }
