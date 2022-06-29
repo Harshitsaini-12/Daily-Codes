@@ -14,7 +14,8 @@ class Node {
 */
 
 class Solution {
-    public void copylist(Node head){
+    
+    public void copyList(Node head){
         Node curr=head;
         
         while(curr!=null){
@@ -30,11 +31,11 @@ class Solution {
     }
     
     public void copyRandomPointer(Node head){
-       Node curr=head;
+        Node curr=head;
         
         while(curr!=null){
-            
             Node random=curr.random;
+            
             if(random!=null){
                 curr.next.random=random.next;
             }
@@ -44,7 +45,6 @@ class Solution {
     }
     
     public Node extractCopy(Node head){
-        
         Node dummy=new Node(-1);
         Node prev=dummy;
         
@@ -57,15 +57,13 @@ class Solution {
             
             prev=prev.next;
             curr=curr.next;
-            
         }
         
         return dummy.next;
     }
     
     public Node copyRandomList(Node head) {
-        
-        copylist(head);
+        copyList(head);
         copyRandomPointer(head);
         return extractCopy(head);
     }
