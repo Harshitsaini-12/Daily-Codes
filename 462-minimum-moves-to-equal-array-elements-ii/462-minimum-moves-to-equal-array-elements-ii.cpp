@@ -7,7 +7,7 @@ public:
         int count=0;
         int j=nums.size()-1;
         
-        while(i<j){
+        while(i<=j){
             count+=nums[j]-nums[i];
             i++;
             j--;
