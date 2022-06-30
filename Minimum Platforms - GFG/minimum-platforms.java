@@ -59,13 +59,13 @@ class Solution
         
         while(i<n && j<n){
             
-            if(arr[i]<=dep[j]){
-                platforms++;
-                i++;
-            }else if(arr[i]>dep[j]){
-                platforms--;
-                j++;
-            }
+           if(arr[i]<=dep[j]){
+               platforms++;
+               i++;
+           }else if(arr[i]>dep[j]){
+               platforms--;
+               j++;
+           }
             
             if(platforms>result){
                 result=platforms;
