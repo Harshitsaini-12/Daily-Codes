@@ -3,11 +3,11 @@ class Solution {
         List<List<String>>ans=new ArrayList<>();
         List<String>sans=new ArrayList<>();
         
-        partition_generate(0,sans,ans,s);
+        partition(0,s,ans,sans);
         return ans;
     }
     
-    public void partition_generate(int index,List<String>sans,List<List<String>>ans,String s){
+    public void partition(int index,String s,List<List<String>>ans,List<String>sans){
         
         if(index==s.length()){
             ans.add(new ArrayList<>(sans));
@@ -16,20 +16,21 @@ class Solution {
         
         for(int i=index;i<s.length();i++){
             if(isPalindrome(s,index,i)){
+                
                 sans.add(s.substring(index,i+1));
-                partition_generate(i+1,sans,ans,s);
+                partition(i+1,s,ans,sans);
                 sans.remove(sans.size()-1);
             }
         }
     }
     
     public boolean isPalindrome(String s,int i,int j){
+        
         while(i<=j){
             if(s.charAt(i)!=s.charAt(j))return false;
             i++;
             j--;
         }
-        
         return true;
     }
 }
