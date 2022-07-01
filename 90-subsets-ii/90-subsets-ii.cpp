@@ -17,6 +17,7 @@ public:
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         vector<vector<int>>ans;
         vector<int>sans;
+        
         sort(nums.begin(),nums.end());
         
         generateSubsets(0,sans,ans,nums);
