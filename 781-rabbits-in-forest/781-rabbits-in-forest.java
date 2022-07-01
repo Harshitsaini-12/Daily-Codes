@@ -5,14 +5,14 @@ class Solution {
         
         for(int elem:answers){
             
-           if(!hm.containsKey(elem)){
+           if(hm.containsKey(elem)){
+               hm.put(elem,hm.get(elem)+1);
+           }else{
                ans+=elem+1;
                hm.put(elem,1);
-           }else{
-               hm.put(elem,hm.get(elem)+1);
            }
             
-            if(hm.get(elem)==elem+1)hm.remove(elem);
+           if(hm.get(elem)==elem+1)hm.remove(elem);
         }
         return ans;
     }
