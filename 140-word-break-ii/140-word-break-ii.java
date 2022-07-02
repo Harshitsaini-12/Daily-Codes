@@ -20,37 +20,35 @@ class Solution {
     }
     
     public List<String> wordBreak(String s, List<String> wordDict) {
-        HashSet<String>set=new HashSet<>();
-        int len=0;
-        int n=s.length();
+       HashSet<String>set=new HashSet<>();
+       int maxlen=0;
         
-        for(String ss:wordDict){
-            set.add(ss);
-            len=Math.max(len,ss.length());
-        }
+       for(String ss:wordDict){
+           set.add(ss);
+           maxlen=Math.max(maxlen,ss.length());
+       }
+       
+       int n=s.length();
+       boolean[]dp=new boolean[n+1];
+       dp[0]=true;
         
-        boolean []dp=new boolean[n+1];
-        dp[0]=true;
-        
-        for(int i=0;i<=n;i++){
-            
-            if(!dp[i])continue;
-            
-            for(int l=1;l<=len && i+l<=n;l++){
-                String substr=s.substring(i,i+l);
-                if(set.contains(substr)){
-                    dp[i+l]=true;
-                }
-            }
-        }
-        
+       for(int i=0;i<=n;i++){
+           
+           if(!dp[i])continue;
+          
+          for(int l=1;l<=maxlen && l+i<=n;l++){
+              String substr=s.substring(i,i+l);
+              
+              if(set.contains(substr)){
+                  dp[l+i]=true;
+              }
+          }
+       }
         List<String>ans=new ArrayList<>();
         
         if(dp[n]){
-            wordBreak_backEng(s,ans,set,0,dp,len,wordDict,"");
+            wordBreak_backEng(s,ans,set,0,dp,maxlen,wordDict,"");
         }
-         System.out.println(ans);
-        
         return ans;
     }
 }
