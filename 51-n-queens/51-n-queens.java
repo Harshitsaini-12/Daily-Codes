@@ -1,43 +1,42 @@
 class Solution {
     public List<List<String>> solveNQueens(int n) {
-        List<List<String>>answer=new ArrayList<>();
+        List<List<String>>ans=new ArrayList<>();
         
-       char[][]grid=new char[n][n];
+        char[][]grid=new char[n][n];
         
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 grid[i][j]='.';
             }
         }
-        nQueens(grid,0,n,answer);
-        return answer;
+        
+        solve(grid,n,ans,0);
+        return ans;
     }
     
-    private void nQueens(char[][]grid,int r,int n,List<List<String>>ans){
+    public void solve(char[][]grid,int n,List<List<String>>ans,int r){
         
         if(r==n){
-            List<String> tempAns=convert(grid,n);
-            
-            ans.add(tempAns);
+            List<String>sans=convert(grid,n);
+            ans.add(sans);
             return;
         }
         
         for(int c=0;c<n;c++){
-            
-            if(isValid(r,c,grid,n)){
+            if(isValid(grid,r,c,n)){
                 grid[r][c]='Q';
-                nQueens(grid,r+1,n,ans);
+                solve(grid,n,ans,r+1);
                 grid[r][c]='.';
             }
-        }
+        } 
         return;
     }
     
-    private boolean isValid(int r,int c,char [][]grid,int n){
-        return isRow(r,grid,n) && isCol(c,grid,n) && isDiagonal(grid,r,c,n);
+    public boolean isValid(char[][]grid,int r,int c,int n){
+        return isCol(grid,r,c,n)&& isRow(grid,r,c,n) && isDiagonal(grid,r,c,n);
     }
     
-    private boolean isRow(int r,char[][]grid,int n){
+    private boolean isRow(char[][]grid,int r,int c,int n){
         for(int j=0;j<n;j++){
             if(grid[r][j]=='Q'){
                 return false;
@@ -46,7 +45,7 @@ class Solution {
         return true;
     }
     
-    private boolean isCol(int c,char[][] grid,int n){
+    private boolean isCol(char[][]grid,int r,int c,int n){
          for(int i=0;i<n;i++){
             if(grid[i][c]=='Q'){
                 return false;
@@ -104,16 +103,16 @@ class Solution {
         return true;
     }
     
-    private List<String>convert(char[][]grid,int n){
-        List<String>ans=new ArrayList<>();
+    public List<String>convert(char[][]grid,int n){
+        List<String>list=new ArrayList<>();
         
-        for(int c=0;c<n;c++){
-            String temp="";
-            for(int r=0;r<n;r++){
-                temp+=grid[r][c];
+        for(int j=0;j<n;j++){
+              String temp="";
+            for(int i=0;i<n;i++){
+                temp+=grid[i][j];
             }
-            ans.add(temp);
+            list.add(temp);
         }
-        return ans;
+        return list;
     }
 }
