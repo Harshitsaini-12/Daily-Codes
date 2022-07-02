@@ -2,13 +2,14 @@ class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
         HashSet<String>set=new HashSet<>();
         
-        int n=s.length();
-        int len=0;
+        int maxlen=0;
         
         for(String ss:wordDict){
             set.add(ss);
-            len=Math.max(len,ss.length());
+            maxlen=Math.max(maxlen,ss.length());
         }
+        
+        int n=s.length();
         
         boolean[]dp=new boolean[n+1];
         dp[0]=true;
@@ -16,7 +17,7 @@ class Solution {
         for(int i=0;i<=n;i++){
             if(!dp[i])continue;
             
-            for(int l=1;l<=len && l+i<=n;l++){
+            for(int l=1;l<=maxlen && i+l<=n;l++){
                 String substr=s.substring(i,i+l);
                 
                 if(set.contains(substr)){
