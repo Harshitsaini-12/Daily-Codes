@@ -27,7 +27,7 @@ public:
     }
     
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        vector<int>idx(1,0);
-        return bstFromPreorder_(preorder,-1e9,1e9,idx);
+      vector<int>idx(1,0);
+        return bstFromPreorder_(preorder,INT_MIN,INT_MAX,idx);
     }
 };
