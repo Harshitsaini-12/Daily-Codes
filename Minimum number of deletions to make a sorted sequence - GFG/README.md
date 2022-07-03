@@ -1,5 +1,5 @@
 # Minimum number of deletions to make a sorted sequence
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given an array <strong>arr</strong> of size <strong>N</strong>, the task is to remove or delete the minimum number of elements from the array so that when the remaining elements are placed in the same sequence order form an <strong>increasing sorted sequence</strong>.</span></p>
 
