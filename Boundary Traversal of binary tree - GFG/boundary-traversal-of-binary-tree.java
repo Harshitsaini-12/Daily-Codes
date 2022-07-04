@@ -108,60 +108,62 @@ class GFG
 
 class Solution
 {
-    
-    void leftorder(Node node,ArrayList<Integer>ans){
-        if(node==null)return;
+    void addleftside(Node node,ArrayList<Integer>ans){
+        Node curr=node.left;
         
-        if(node.left!=null || node.right!=null){
-              ans.add(node.data);
-        }
-      
-        if(node.left!=null){
-            leftorder(node.left,ans);
-        }else if(node.right!=null){
-            leftorder(node.right,ans);
+        while(curr!=null){
+            if(!isLeaf(curr))ans.add(curr.data);
+            
+            if(curr.left!=null)curr=curr.left;
+            else{
+               curr=curr.right; 
+            }
         }
     }
     
-    void rightorder(Node node,ArrayList<Integer>ans){
-        if(node==null)return;
-        
-        if(node.right!=null){
-            rightorder(node.right,ans);
-        }else if(node.left!=null){
-            rightorder(node.left,ans);
-        }
-        
-         if(node.left!=null || node.right!=null){
-              ans.add(node.data);
-        }
-    }
-    
-    
-    void leaves(Node node,ArrayList<Integer>ans){
-        if(node==null)return;
-        
-        
-        leaves(node.left,ans);
-        
-        if(node.left==null && node.right==null){
+     void addLeavesNodes(Node node,ArrayList<Integer>ans){
+        if(isLeaf(node)){
             ans.add(node.data);
+            return;
         }
-          leaves(node.right,ans);
+        
+        if(node.left!=null)addLeavesNodes(node.left,ans);
+        if(node.right!=null)addLeavesNodes(node.right,ans);
+    }
+    
+     void addRightSide(Node node,ArrayList<Integer>ans){
+        Node curr=node.right;
+        ArrayList<Integer>temp=new ArrayList<>();
+        
+        while(curr!=null){
+            if(!isLeaf(curr))temp.add(curr.data);
+            
+            if(curr.right!=null)curr=curr.right;
+            else curr=curr.left;
+        }
+        
+        int i;
+        
+        for(i=temp.size()-1;i>=0;i--){
+            ans.add(temp.get(i));
+        }
         
     }
     
 	ArrayList <Integer> boundary(Node node)
 	{
 	    ArrayList<Integer>ans=new ArrayList<>();
-	    if(node.left==null && node.right==null){
-	        ans.add(node.data);
-	    }else{
-	        ans.add(node.data);
-	        leftorder(node.left,ans);
-	        leaves(node,ans);
-	        rightorder(node.right,ans);
-	    }
+	   // if(node==null)return ans;
+	    if(isLeaf(node)==false)ans.add(node.data);
+	    
+	    addleftside(node,ans);
+	    addLeavesNodes(node,ans);
+	    addRightSide(node,ans);
+	    
 	    return ans;
 	}
+	
+	boolean isLeaf(Node root){
+      return root.left==null && root.right==null;
+    }
 }
