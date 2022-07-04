@@ -17,7 +17,7 @@ class Solution {
             }
         
         if(canBuy==1){
-            int idle=ans(prices,ci+1,canBuy,hm);
+            int idle=ans(prices,ci+1,canBuy,hm);// nhi karidta
             int buy= -prices[ci] + ans(prices,ci+1,0,hm);
             
             hm.put(key,Math.max(idle,buy));
