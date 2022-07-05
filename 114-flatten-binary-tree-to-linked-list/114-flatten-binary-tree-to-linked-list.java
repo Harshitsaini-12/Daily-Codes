@@ -14,24 +14,16 @@
  * }
  */
 class Solution {
-    public TreeNode flatten_(TreeNode node){
-        
-        if(node==null || (node.left==null && node.right==null))return node;
-        
-        TreeNode leftTail=flatten_(node.left);
-        TreeNode rightTail=flatten_(node.right);
-        
-        if(leftTail!=null){
-            leftTail.right=node.right;
-            node.right=node.left;
-            node.left=null;
-        }
-        
-        return rightTail!=null?rightTail:leftTail;
-    }
-    
+    TreeNode prev=null;
     public void flatten(TreeNode root) {
+        
         if(root==null)return;
-        flatten_(root);
+        
+        flatten(root.right);
+        flatten(root.left);
+        
+        root.right=prev;
+        root.left=null;
+        prev=root;
     }
 }
