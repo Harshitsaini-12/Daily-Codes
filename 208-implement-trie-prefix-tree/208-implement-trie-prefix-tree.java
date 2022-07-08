@@ -1,39 +1,44 @@
 class Trie {
-    private class Node{
-        Node[]child;
+    
+    private class TrieNode{
+        TrieNode []child;
         boolean isEnd;
         
-        Node(){
-          child=new Node[26];
+        TrieNode(){
+            child=new TrieNode[26];
         }
     }
-    
-    private final Node root;
-    
+
+    private final TrieNode root;
     public Trie() {
-        root=new Node(); 
+        root=new TrieNode();
+        
     }
     
     public void insert(String word) {
-        Node curr=root;
-        for(int i=0;i<word.length();i++){
-            if(curr.child[word.charAt(i)-'a']==null){
-                curr.child[word.charAt(i)-'a']=new Node();
-            }
-            curr=curr.child[word.charAt(i)-'a'];
-        }
-        
-        curr.isEnd=true;
-            
-    }
-    
-    public boolean search(String word) {
-        Node curr=root;
+        TrieNode curr=root;
         
         for(int i=0;i<word.length();i++){
             char ch=word.charAt(i);
             
-            if(curr.child[ch-'a']==null)return false;
+            if(curr.child[ch-'a']==null){
+                curr.child[ch-'a']=new TrieNode();
+            }
+            
+            curr=curr.child[ch-'a'];
+        }
+        curr.isEnd=true;
+    }
+    
+    public boolean search(String word) {
+        TrieNode curr=root;
+        
+        for(int i=0;i<word.length();i++){
+            char ch=word.charAt(i);
+            
+            if(curr.child[ch-'a']==null){
+                return false;
+            }
             curr=curr.child[ch-'a'];
         }
         
@@ -41,12 +46,14 @@ class Trie {
     }
     
     public boolean startsWith(String word) {
-         Node curr=root;
+         TrieNode curr=root;
         
         for(int i=0;i<word.length();i++){
             char ch=word.charAt(i);
             
-            if(curr.child[ch-'a']==null)return false;
+            if(curr.child[ch-'a']==null){
+                return false;
+            }
             curr=curr.child[ch-'a'];
         }
         
