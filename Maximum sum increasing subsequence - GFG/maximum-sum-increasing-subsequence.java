@@ -38,8 +38,8 @@ class Solution
 	        for(int j=0;j<i;j++){
 	            if(arr[j]<arr[i]){
 	                if(max==null){
-	                    max=dp[j];   
-	                }else if(dp[j]>max){
+	                    max=dp[j];
+	                }else if(max<dp[j]){
 	                    max=dp[j];
 	                }
 	                
