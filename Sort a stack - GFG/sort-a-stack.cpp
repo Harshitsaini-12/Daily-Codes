@@ -69,6 +69,7 @@ void reverse(stack<int>&s){
         insert_correct_position(s,x);
     }
 }
+//tc 
 
 void SortedStack :: sort()
 {
