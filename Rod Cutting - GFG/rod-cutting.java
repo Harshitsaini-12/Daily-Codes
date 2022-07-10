@@ -1,6 +1,5 @@
 // { Driver Code Starts
 
-
 import java.io.*;
 import java.util.*;
 
@@ -25,7 +24,7 @@ class RodCutting {
 class Solution{
     public int cutRod(int price[], int n) {
         //code here
-         int[][] arr = new int[price.length][n+1];
+        int[][] arr = new int[price.length][n+1];
         return maxValue(price, 0, n, arr);
     }
     
