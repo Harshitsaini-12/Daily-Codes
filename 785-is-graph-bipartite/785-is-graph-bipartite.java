@@ -1,30 +1,35 @@
 class Solution {
-    
+    //-1 : not visited , 0-red color ,1-- green color
     public boolean isBipartite(int[][]graph,int src,int[]vis){
-        LinkedList<Integer>q=new LinkedList<>();
-        q.addLast(src);
+       LinkedList<Integer>q=new LinkedList<>();
         
-        int color=0;
+       int color=0;
+        
+       q.addLast(src);
+        
         while(q.size()>0){
             int size=q.size();
             while(size-->0){
-                int val=q.removeFirst();
+                int vtx=q.removeFirst();
                 
-                if(vis[val]!=-1){
-                    if(vis[val]!=color)return false;
-                    continue;
+                if(vis[vtx]!=-1){
+                    if(vis[vtx]!=color)return false;
                 }
                 
-                vis[val]=color;
-                for(int v:graph[val]){
+                vis[vtx]=color;
+                
+                for(int v:graph[vtx]){
                     if(vis[v]==-1){
                         q.addLast(v);
                     }
                 }
+                
             }
             color=(color+1)%2;
         }
+        
         return true;
+        
     }
     
     public boolean isBipartite(int[][] graph) {
