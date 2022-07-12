@@ -95,7 +95,7 @@ class Solution
                 int currentnei=nei.get(0);
                 int currentWeight=nei.get(1);
                 
-                if(visited[currentnei])continue;
+                // if(visited[currentnei])continue;
                 
                 pq.add(new Pair(currentnei,currentPair.cost+currentWeight));
             }
