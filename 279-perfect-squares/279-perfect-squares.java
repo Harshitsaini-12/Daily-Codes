@@ -16,7 +16,6 @@ class Solution {
             }
             dp[i]=min+1;
         }
-        
         return dp[n];
     }
 }
