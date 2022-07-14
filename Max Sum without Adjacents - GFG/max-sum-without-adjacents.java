@@ -32,19 +32,16 @@ public class Main {
 class Solution {
     int findMaxSum(int arr[], int n) {
         // code here
-        int inc=arr[0];
+       int inc=arr[0];
        int exc=0;
        
-       for(int i=1;i<arr.length;i++){
+       for(int i=1;i<n;i++){
+           int ninc=exc+arr[i];
+           int nexc=Math.max(inc,exc);
            
-           int newnc = arr[i] + exc;
-           int newexc = Math.max(inc,exc);
-           
-           inc=newnc;
-           exc=newexc;
+           inc=ninc;
+           exc=nexc;
        }
-       
-       int ans=Math.max(inc,exc);
-        return ans;
+       return Math.max(inc,exc);
     }
 }
