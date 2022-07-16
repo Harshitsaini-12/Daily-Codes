@@ -16,7 +16,7 @@ class Node {
 class Solution {
     
     public void copyList(Node head){
-        Node curr=head;
+      Node curr=head;
         
         while(curr!=null){
             Node forw=curr.next;
@@ -34,12 +34,11 @@ class Solution {
         Node curr=head;
         
         while(curr!=null){
-            Node random=curr.random;
+           Node random=curr.random;
             
             if(random!=null){
-                curr.next.random=random.next;
+               curr.next.random=random.next; 
             }
-            
             curr=curr.next.next;
         }
     }
@@ -51,7 +50,6 @@ class Solution {
         Node curr=head;
         
         while(curr!=null){
-            
             prev.next=curr.next;
             curr.next=curr.next.next;
             
