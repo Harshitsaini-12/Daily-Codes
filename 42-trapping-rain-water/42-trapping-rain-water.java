@@ -27,16 +27,16 @@ class Solution {
         int ans=0;
         
         while(l<r){
-            lmax=Math.max(lmax,height[l]);
-            rmax=Math.max(rmax,height[r]);
+           lmax=Math.max(lmax,height[l]);
+           rmax=Math.max(rmax,height[r]);
             
-            if(rmax<lmax){
-                ans+=rmax-height[r];
-                r--;
-            }else{
-                ans+=lmax-height[l];
-                l++;
-            }
+           if(rmax<lmax){
+               ans+=rmax-height[r];
+               r--;
+           }else{
+               ans+=lmax-height[l];
+               l++;
+           }
         }
         return ans;
     }
