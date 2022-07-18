@@ -35,6 +35,7 @@ class Solution {
     }
     
     public List<List<Integer>> verticalTraversal(TreeNode root) {
+        
         List<List<Integer>> res = new ArrayList<>();
         
         PriorityQueue<Pair>pq=new PriorityQueue<>((a,b)->{
@@ -77,3 +78,6 @@ class Solution {
         return res;
     }
 }
+
+//tc --> 0(nlogn)
+//sc --> 0(n)
