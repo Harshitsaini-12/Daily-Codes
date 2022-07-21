@@ -14,7 +14,7 @@ class Solution {
         return ans(prices,0,1,2,dp);
     }
     
-     public int ans(int[]prices,int ci,int canBuy,int trans,int[][][] arr){
+     public int ans(int[]prices,int ci,int canBuy,int trans,int[][][]arr){
         
         if(trans<=0 || prices.length<=ci){
             return 0;
