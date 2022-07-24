@@ -1,35 +1,49 @@
 class Solution {
 public:
-    int sinkIsland(vector<vector<int>>& grid,int cr,int cc,int m,int n){
-       if(cr<0 || cr>=m || cc<0 || cc>=n || grid[cr][cc]==0)return 0;
-        
-        grid[cr][cc]=0;
-        
-        //up call
-        int a=sinkIsland(grid,cr-1,cc,m,n);
-        //down call
-        int b=sinkIsland(grid,cr+1,cc,m,n);
-        //left call
-        int c=sinkIsland(grid,cr,cc-1,m,n);
-        //right call
-        int d=sinkIsland(grid,cr,cc+1,m,n);
-        
-        return 1+a+b+c+d;
+    vector<int>par,size;
+    int findPar(int u){
+        return par[u]==u ? u : par[u]=findPar(par[u]);
     }
     
     int maxAreaOfIsland(vector<vector<int>>& grid) {
-        int m=grid.size();
-        int n=grid[0].size();
+        int n=grid.size();
+        int m=grid[0].size();
         
-        int ans=0;
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                
-                if(grid[i][j]==1){
-                   ans=max(ans,sinkIsland(grid,i,j,m,n));
-                }
-            }
+        if(n==0)return 0;
+        
+        for(int i=0;i<n*m;i++){
+            par.push_back(i);
+            size.push_back(1);
         }
-        return ans;
+        
+        vector<vector<int>>dir{{0,1},{1,0},{-1,0},{0,-1}};
+        int maxi=0;
+        
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                     int p1=findPar(i * m + j);
+                
+                    for(auto &d:dir){
+                        int r=d[0] + i;
+                        int c=d[1] + j;
+
+                        if(r>=0 && c>=0 && r<n && c<m && grid[r][c]==1){
+                            int p2=findPar( r*m +c);
+                            if(p1!=p2){
+                                par[p2]=p1;
+                                size[p1]+=size[p2];
+                            }
+                        }
+
+                    }
+                    maxi=max(maxi,size[p1]);
+                }
+                
+            }
+            
+        }
+        
+        return maxi;
     }
 };
