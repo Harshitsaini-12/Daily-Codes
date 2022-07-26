@@ -6,21 +6,21 @@ class Solution {
         
         int maxArea=0;
         
-        for(int i=0;i<n;i++){
-            while(st.getFirst()!=-1 && heights[i]<=heights[st.peek()]){
+        for(int i=0;i<=n;i++){
+            int val = i==n?0:heights[i];
+            
+            while(st.getFirst()!=-1 && val<=heights[st.peek()]){
+                int rm=i;
+                
                 int h=heights[st.removeFirst()];
-                int w=i-st.getFirst()-1;
-                maxArea=Math.max(maxArea,h*w);
+                int lm=st.peek();
+                
+                maxArea=Math.max(maxArea,h*(rm-lm-1));
+                
             }
           st.addFirst(i);
         }
-        
-        while(st.getFirst()!=-1 ){
-                int h=heights[st.removeFirst()];
-                int w=n-st.getFirst()-1;
-                maxArea=Math.max(maxArea,h*w);
-        }
-        
+
         return maxArea;
     }
 }
