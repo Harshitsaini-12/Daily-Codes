@@ -1,6 +1,5 @@
 class Solution {
 public:
-    
     int merge(vector<int>&nums,int low,int mid,int high){
         int count=0;
         int j=mid+1;
@@ -42,7 +41,7 @@ public:
     int mergeSort(vector<int>&nums,int start,int end){
         if(start>=end)return 0;
         
-        int mid=(start+end)/2;
+        int mid=(start+end)>>1;
         
         int inv=mergeSort(nums,start,mid);
         inv+=mergeSort(nums,mid+1,end);
