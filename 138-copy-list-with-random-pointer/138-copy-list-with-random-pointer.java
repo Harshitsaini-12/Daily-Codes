@@ -16,13 +16,13 @@ class Node {
 class Solution {
     
     public void copyList(Node head){
-      Node curr=head;
+        Node curr=head;
         
         while(curr!=null){
+            
             Node forw=curr.next;
             
             Node newnode=new Node(curr.val);
-            
             curr.next=newnode;
             newnode.next=forw;
             
@@ -34,18 +34,19 @@ class Solution {
         Node curr=head;
         
         while(curr!=null){
-           Node random=curr.random;
+            Node random=curr.random;
             
             if(random!=null){
-               curr.next.random=random.next; 
+                curr.next.random=random.next;
             }
+            
             curr=curr.next.next;
         }
     }
     
     public Node extractCopy(Node head){
-        Node dummy=new Node(-1);
-        Node prev=dummy;
+         Node dummy=new Node(-1);
+         Node prev=dummy;
         
         Node curr=head;
         
@@ -56,7 +57,7 @@ class Solution {
             prev=prev.next;
             curr=curr.next;
         }
-        
+            
         return dummy.next;
     }
     
