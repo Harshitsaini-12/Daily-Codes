@@ -1,50 +1,52 @@
 class Solution {
-    
-    public class EnvelopeComparator implements Comparator<int[]>{
-        @Override
-        public int compare(int[]one,int[]two){
-            if(one[0]==two[0])return two[1]-one[1];
+    public class envelopesComparator implements Comparator<int[]>{
+          @Override
+            public int compare(int[]a,int[]b){
+                if(a[0]==b[0])return b[1]-a[1];
                 else{
-                    return one[0]-two[0];
+                    return a[0]-b[0];
                 }
+            }
         }
-    }
     
     public int maxEnvelopes(int[][] envelopes) {
-       
-         Arrays.sort(envelopes,new EnvelopeComparator());
-         return LIS(envelopes);
-      
+        
+        Arrays.sort(envelopes,new envelopesComparator());
+        return Lis(envelopes);
     }
     
-    public int binary_search(int val,List<Integer>list){
-        int li=0,ri=list.size();
+    public int binary_search(int val,ArrayList<Integer>ans){
         
-        while(li<ri){
-            int mid=(li+ri)/2;
+        int i=0;
+        int j=ans.size();
+        
+        while(i<j){
+            int mid=(i+j)/2;
             
-            if(val<=list.get(mid)){
-                ri=mid;
+            if(val<=ans.get(mid)){
+                j=mid;
             }else{
-                li=mid+1;
+                i=mid+1;
             }
         }
         
-        return li;
+        return i;
     }
     
-    public int LIS(int[][]arr){
-          ArrayList<Integer>ans=new ArrayList<>();
+    public int Lis(int[][] envelopes){
+        ArrayList<Integer>ans=new ArrayList<>();
         
-        for(int i=0;i<arr.length;i++){
-            int val=arr[i][1];
+        for(int i=0;i<envelopes.length;i++){
+            int val=envelopes[i][1];
+            
             int idx=binary_search(val,ans);
             
-            if(ans.size()==idx)ans.add(val);
+            if(idx==ans.size())ans.add(val);
             else{
                 ans.set(idx,val);
             }
         }
+        
         return ans.size();
     }
 }
