@@ -1,10 +1,10 @@
 class LRUCache {
-    //data members
+   // data memebers
     private class ListNode{
-        Integer key;
+        Integer key; // app ka naam h key
         Integer value;
-        ListNode next=null;
-        ListNode prev=null;
+        ListNode next;
+        ListNode prev;
         
         ListNode(int key,int value){
             this.key=key;
@@ -13,17 +13,16 @@ class LRUCache {
     }
     
     private HashMap<Integer,ListNode>hm;
-    private ListNode head=null;
-    private ListNode tail=null;
-    private int capacity;
+    private ListNode head;
+    private ListNode tail;
     private int size;
+    private int capacity;
     
     private void intialise(int capacity){
-        this.capacity=capacity;
-        this.size=0;
         hm=new HashMap<>();
-        this.head=this.tail=null;
-        
+        this.size=0;
+        this.capacity=capacity;
+        this.tail=this.head=null;
     }
 
     public LRUCache(int capacity) {
@@ -109,14 +108,15 @@ class LRUCache {
             node.value=value;
             addRecent(node);
         }else{
-            ListNode node=new ListNode(key,value);
-            if(this.capacity==this.size){
-                ListNode rn=removeFirst();
-                hm.remove(rn.key);
+            ListNode newnode=new ListNode(key,value);
+            
+            if(this.size==this.capacity){
+                ListNode rm=removeFirst();
+                hm.remove(rm.key);
             }
             
-            addLast(node);
-            hm.put(key,node);
+            addLast(newnode);
+            hm.put(key,newnode);
         }
     }
 }
