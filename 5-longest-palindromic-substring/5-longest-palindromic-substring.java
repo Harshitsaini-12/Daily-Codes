@@ -17,6 +17,7 @@ class Solution {
                 }
                 
                 count+=dp[i][j]>0?1:0;
+                
                  if(dp[i][j]>ans){
                     ans=dp[i][j];
                     si=i;
