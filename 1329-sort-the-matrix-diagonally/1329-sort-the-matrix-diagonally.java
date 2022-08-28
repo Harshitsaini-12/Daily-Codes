@@ -29,6 +29,6 @@ class Solution {
         return mat;
     }
 }
-
+//tc --> O(m*nlog(min(m,n));
 
 // gap between the diagonals is same
