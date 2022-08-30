@@ -7,6 +7,7 @@ public:
             return;   
         }
         
+        // open bracket call
         if(open!=0){
             string out1=out;
             out1.push_back('(');
@@ -14,6 +15,7 @@ public:
             helper(out1,open-1,close,s);
         }
         
+        //close bracket call
         if(close>open){
             string out2=out;
             out2.push_back(')');
