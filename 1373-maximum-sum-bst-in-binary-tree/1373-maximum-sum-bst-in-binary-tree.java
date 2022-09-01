@@ -29,7 +29,7 @@ class Solution {
     
     private MyNode largestSubtree_(TreeNode root){
         if(root==null){
-           return new MyNode(Integer.MAX_VALUE,Integer.MIN_VALUE,0);
+            return new MyNode(Integer.MAX_VALUE,Integer.MIN_VALUE,0);
         }
         
         MyNode lft=largestSubtree_(root.left);
@@ -43,7 +43,8 @@ class Solution {
         
         result=Math.max(result,sum);
         
-        return new MyNode(Math.min(root.val,lft.min),Math.max(root.val,rft.max),sum);
+        return new MyNode(Math.min(lft.min,root.val),Math.max(rft.max,root.val),sum);
+        
     }
     
     int result=Integer.MIN_VALUE;
