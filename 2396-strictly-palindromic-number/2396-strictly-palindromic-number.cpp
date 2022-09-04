@@ -17,21 +17,22 @@ public:
     }
     
     bool isStrictlyPalindromic(int n) {
-       for(int i=2;i<=n-2;i++){
-           string s;
-           int x=n;
+//        for(int i=2;i<=n-2;i++){
+//            string s;
+//            int x=n;
            
-           while(x!=0){
-               s.push_back(x%i);
-               x/=i;
-           }
+//            while(x!=0){
+//                s.push_back(x%i);
+//                x/=i;
+//            }
            
-           if(!isPalin(s)){
-               return false;
-           }
-       }
+//            if(!isPalin(s)){
+//                return false;
+//            }
+//        }
         
-        return true;
+//         return true;
+//     }
+  return false;
     }
-
 };
