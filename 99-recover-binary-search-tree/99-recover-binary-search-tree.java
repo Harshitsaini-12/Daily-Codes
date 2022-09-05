@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+    //using morris traversal
+    
     public TreeNode rightmost(TreeNode node,TreeNode curr){
         while(node.right!=null && node.right!=curr){
             node=node.right;
