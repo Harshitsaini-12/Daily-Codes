@@ -7,7 +7,7 @@ public:
         
         do{
             slow=nums[slow];
-            fast=nums[nums[fast]];
+            fast=nums[nums[fast]]; 
         }while(slow!=fast);
         
             
@@ -22,7 +22,8 @@ public:
     }
 };
 
-    // sort(nums.begin(),nums.end());
+        // sort(nums.begin(),nums.end());
+
         // int ans=0;
         // for(int i=0;i<nums.size()-1;i++){
         //     if(nums[i]==nums[i+1]){
