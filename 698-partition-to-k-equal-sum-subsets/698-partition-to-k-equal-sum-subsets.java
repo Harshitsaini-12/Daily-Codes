@@ -10,11 +10,12 @@ class Solution {
         }
         
         boolean res=false;
+        
         for(int i=idx;i<nums.length;i++){
             if(vis[i])continue;
             
             vis[i]=true;
-            res=res||canPartitionKSubsets_(nums,i+1,k,vis,tar,sumSF+nums[i]);
+            res = res || canPartitionKSubsets_(nums,i+1,k,vis,tar,sumSF+nums[i]);
             vis[i]=false;
         }
         
