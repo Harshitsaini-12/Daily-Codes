@@ -39,20 +39,22 @@ public:
     Node* cloneGraph(Node* node) {
        if(node==NULL)return NULL;
         
-        vector<Node*>visited(101,NULL);
+       vector<Node*>visited(101,NULL);
         
-        Node* copy=new Node(node->val);
-        visited[node->val]=copy;
+       Node* copy=new Node(node->val);
+       visited[node->val]=copy;
         
-        for(auto curr:node->neighbors){
-            if(visited[curr->val]==NULL){
-                Node* newnode=new Node(curr->val);
-                (copy->neighbors).push_back(newnode);
-                dfs(curr,newnode,visited);
-            }else{
-                (copy->neighbors).push_back(visited[curr->val]);
-            }
-        }
+       for(auto curr:node->neighbors){
+          if(visited[curr->val]!=NULL){
+              copy->neighbors.push_back(visited[curr->val]);
+          }else{
+              Node* newnode=new Node(curr->val);
+              copy->neighbors.push_back(newnode);
+              
+              dfs(curr,newnode,visited);
+          }
+       }
+       
         return copy;
     }
 };
