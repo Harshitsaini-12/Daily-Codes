@@ -14,8 +14,6 @@ public:
         queue<int>q;
         for(int i=0;i<n;i++)if(indegree[i]==0)q.push(i);
         
-        int vertexCount=0;
-        
         while(q.size()!=0){
             int size=q.size();
             while(size-->0){
