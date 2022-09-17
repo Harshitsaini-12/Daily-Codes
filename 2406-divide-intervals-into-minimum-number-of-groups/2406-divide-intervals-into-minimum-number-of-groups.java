@@ -15,6 +15,7 @@ class Solution {
         pq.offer(intervals[0][1]);
         
         for(int i=1;i<intervals.length;i++){
+            
             if(intervals[i][0]>pq.peek()){
                 pq.poll();
             }
