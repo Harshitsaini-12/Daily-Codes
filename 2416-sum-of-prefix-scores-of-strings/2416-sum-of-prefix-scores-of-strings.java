@@ -13,7 +13,7 @@ class Solution {
     
     private TrieNode root;
     
-    private void insert(String s){
+    private void insert_word(String s){
         TrieNode curr=root;
         
         for(int i=0;i<s.length();i++){
@@ -55,7 +55,7 @@ class Solution {
         
         root=new TrieNode();
         
-        for(String word:words)insert(word);
+        for(String word:words)insert_word(word);
         
         for(String word:words){
             
