@@ -58,10 +58,8 @@ class Solution {
         for(String word:words)insert_word(word);
         
         for(String word:words){
-            
             int count=start_word_prefix(word);
             res[i++]=count;
-            
         }
         
         return res;
