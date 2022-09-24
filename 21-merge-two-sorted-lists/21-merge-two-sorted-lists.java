@@ -15,12 +15,12 @@ class Solution {
          if(l2==null)return l1;
         
          if(l1.val>l2.val){
-             ListNode temp =l1;
+             ListNode temp=l1;
              l1=l2;
              l2=temp;
          }
         
-         ListNode dummy=l1;
+        ListNode dummy=l1;
         
         while(l1!=null && l2!=null){
             ListNode temp=null;
