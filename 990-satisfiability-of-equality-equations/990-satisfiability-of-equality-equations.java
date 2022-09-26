@@ -1,7 +1,8 @@
 class Solution {
     int[]par;
+    
     public int findPar(int u){
-        return par[u]==u?u:(par[u]=findPar(par[u]));
+        return par[u]==u ? u : (par[u]=findPar(par[u]));
     }
     
     public boolean equationsPossible(String[] equation) {
