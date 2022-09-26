@@ -6,7 +6,7 @@ class Solution {
         
         Stack<Integer>st=new Stack<>();
         
-       for(int i=n-2;i>=0;i--){
+       for(int i=n-1;i>=0;i--){
            while(st.size()>0 && st.peek()<=nums[i]){
                st.pop();
            }
