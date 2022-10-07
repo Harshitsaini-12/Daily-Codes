@@ -37,7 +37,6 @@ class Solution {
                     }
                     b=curr;
                 }
-                
                 prev=curr;
                 curr=curr.right;
             }else{
