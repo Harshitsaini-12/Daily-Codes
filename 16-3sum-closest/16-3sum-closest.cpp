@@ -11,6 +11,7 @@ public:
             int end=nums.size()-1;
             
             while(start<end){
+                
                 if(nums[start]+nums[end]+val==target)return target;
                 else if(abs(nums[start]+nums[end]+val-target)<diff){
                     diff=abs(nums[start]+nums[end]+val-target);
